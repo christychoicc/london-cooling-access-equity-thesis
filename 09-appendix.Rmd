@@ -1,0 +1,44 @@
+# Appendix B  Regression Model Specification and Selection {-}
+
+```{=latex}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+```
+
+## Baseline GLM Likelihood Selection {.unlisted .unnumbered}
+```{r baslineglmselection, tidy=FALSE, echo=FALSE}
+basline_glm_selection <- readxl::read_excel(
+  "tables/basline_glm_selection.xlsx"
+)
+
+knitr::kable(
+  basline_glm_selection,
+  caption = "Reported AIC values for modelling likelihood (family) selection. Selection for negative binomial and Poisson modelling likelihood (family), where lower AIC values are considered a relatively better fit model. The selected models are highlighted in bold, featuring lower AIC values.",
+  booktabs = TRUE
+)
+```
+
+## Assessment of Residual Spatial Autocorrelation in GLM Models {.unlisted .unnumbered}
+```{r glmresiduals, tidy=FALSE, echo=FALSE}
+glm_residuals <- readxl::read_excel(
+  "tables/glm_residuals.xlsx"
+)
+
+knitr::kable(
+  glm_residuals,
+  caption = "Global Moran’s I statistics for GLM residuals spatial autocorrelation. Moran’s I is calculated using queens’ contiguity and four nearest-neighbours (KNN = 4) spatial weights matrix. Values of 0 indicates for no spatial autocorrelation, while values ranging from 1 to -1 indicates for strong clustering and strong dispersion respectively.",
+  booktabs = TRUE
+)
+```
+
+## BYM2 Likelihood Selection {.unlisted .unnumbered}
+```{r bym2likelihoodselection, tidy=FALSE, echo=FALSE}
+bym2_likelihood_selection <- readxl::read_excel(
+  "tables/bym2_likelihood_selection.xlsx"
+)
+
+knitr::kable(
+  bym2_likelihood_selection,
+  caption = "Reported DIC, WAIC, CPO and MLIK values for BYM2 modelling likelihood (family) selection. Modelling likelihood for selection are negative binomial BYM2 and Poisson BYM2 regression models. The below CPO (negative of sum of log CPO) is featured by the calculation of negative of sum of the log transformed CPO values across all LSOAs. This is used for modelling family selection as main BYM2 regression models for analysis. Modelling selection are conducted referencing the open source modelling manual by Martino and Rue (2008) and Gómez-Rubio (2020).",
+  booktabs = TRUE
+)
+```

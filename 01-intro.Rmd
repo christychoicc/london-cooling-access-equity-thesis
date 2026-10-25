@@ -1,173 +1,21 @@
-# Bookdown basics
+# Introduction
 
 ```{=latex}
 \pagenumbering{arabic} 
 ```
 
-Bookdown enables us to take raw text files (e.g. Rmarkdown files) and output them into a number of different formats with ease. This is more useful than LaTex as you can create a word version for comments from your supervisor, a pdf for final submission and an online book for your own portfolio. 
+Extreme heat has emerged as one of the greatest challenges faced by cities around the world, driven by the intensification of rapid urbanisation and climate change. In response to these challenges, international policy frameworks such as the United Nations 2030 Agenda for Sustainable Development and the New Urban Agenda emphasised the need for sustainable, inclusive and equitable solutions (United Nations, 2015; UN Habitat, 2020). Rising temperatures and more frequent extreme heat events place increasing pressure on urban habitability, resilience, and public services (Mohajerani, Bakaric and Jeffrey-Bailey, 2017). Cities are particularly vulnerable to the rapid expansion of built-up environments, often replacing natural land surfaces with impervious, heat-absorbent materials. This alters local microclimates, accelerates urban overheating and intensifies the urban heat island (UHI) effect, whereby urban air and surface temperatures are significantly higher than those in surrounding rural or peri-urban environments (Kleerekoper, van Esch and Salcedo, 2012; Mohajerani, Bakaric and Jeffrey-Bailey, 2017). More importantly, the consequence of urban overheating extends beyond environmental concerns to social and public health impacts. Exposure to elevated temperatures is associated with a range of adverse physical and mental health outcomes such as thermoregulatory stress, heat fatigue, heat stroke, and increased fatalities (Kleerekoper, van Esch and Salcedo, 2012; Heaviside, Macintyre and Vardoulakis, 2017; Xu et al., 2022). Yet, such impacts are not limited to the most extreme heat events. For instance, in England, an additional 1,311 heat-associated fatalities were recorded during summer heat episodes in 2024 despite being the coolest summer since 2015 (GOV.UK, 2026). This suggests that even under comparably less extreme conditions, urban heat can still place serious pressures on public health. As unprecedented extreme heat events become more frequent, prolonged, and intense (World Health Organization, 2026), urban heat is recognised not only as an environmental issue, but also increasingly a public health concern.
 
-## Structure 
+Urban green space (UGS) is widely recognised as a nature-based approach for mitigating urban heat and improving human health (Bowler et al., 2010a; Lin and Li, 2025). Urban vegetation can disrupt the thermal continuity of urban environments through shading, heat absorption, and evapotranspiration (Xu et al., 2022; Y. Li et al., 2024). Through the park cool island effect, UGS can reduce temperatures within green spaces and extend cooling benefits into surrounding areas, helping buffer heat stress under high temperatures (Shishegar, 2014; Dong et al., 2024). However, UGS does not provide same levels of cooling benefits. The cooling-effectiveness of UGS is heterogeneous, exhibiting spatial variation depending on factors such as size, vegetation density, shape, and spatial configuration (Wang and Ren, 2025). Consequently, spatial proximity to green space does not equate to access to thermal comfort. As cooling performance varies, the extent of its true benefits depends on reachability shaped by temporal, functional and normative factors such as travel time, mode, cost, and duration (Miller, 2018; Hassan et al., 2025). Despite growing recognition of UGS as a cooling infrastructure, both its distribution and cooling benefits remain uneven across neighbourhoods, particularly among lower socioeconomic and ethnic minority groups (Harlan et al., 2006; Li et al., 2026). Such inequalities demonstrate that urban heat mitigation is not only an environmental concern, but also a growing socio-spatial challenge. All things considered, green space provision reflects wider patterns of environmental injustice, and access to cooling relief is shaped by structural urban inequalities rather than by heat exposure alone (Wolch, Byrne and Newell, 2014).
 
-A bookdown book simply combines multiple Rmarkdown files into .pdf, html or .epub (but i've disabled epub here). 
+Taking London as a case study, the city has experienced severe and escalating heat events but remains unprepared for its consequences (Mayor of London, 2026b). Notably, London recorded 59 days above 30°C between 2014 and 2023, and 5 days above 35°C between 2019 and 2022 (IIED, n.d.). The Mayor of London (n.d.) noted that existing homes and buildings in London are not built for the warming climate, with projected impacts on health and social care systems set to increase. Many of those heat related fatalities are considered preventable, yet the London Climate Resilience Review argues that England is currently “ill-prepared” for heat risk with limited cooling opportunities, calling for urgent attention and action (Boyd, Leigh and Sutton, 2024). In response, the London Plan 2021 identifies urban green infrastructure as a key mechanism for addressing UHI, promoting health and wellbeing, and improving accessibility of open spaces (Mayor of London, 2021). Despite strong policy commitments, spatial evidence on whether London’s green infrastructure provides accessible cooling relief to neighbourhoods most exposed to heat and socioeconomic deprivation remains limited. By applying data driven insights across heat vulnerable areas, cooling-effectiveness, and multimodal accessibility, this allows for informing more equitable urban greening strategies.
 
-All Rmakdown files must be located in the base (or root) of the project. For example, don't got putting the .Rmd in a folder called chapters and then wonder why it's not working. They all must be in the same folder as the project file. You can however put output figure images into a folder (e.g. figures) then call them in.
+While existing literature shows the ability of UGS to mitigate urban heat and acknowledges its variation in cooling performance, few studies have integrated this into fields of cooling-effectiveness, accessibility, and environmental equity within one research framework. Consequently, based on existing research gaps, this study therefore aims to address 12 the research question of: To what extent is multimodal accessibility to cooling-effective urban green spaces equitably distributed across heat exposed and socioeconomically deprived areas in London? The specific objectives include:
 
-## Building the book
+1.  Through Earth observation indicators, which urban green space demonstrates cooling benefits, and which neighbourhoods experience greatest heat exposure in London?
 
-You will need the packages: `bookdown, kabble, knitr`
+2.  How accessible are cooling-effective green spaces across London's neighbourhoods considering multi-modal transportation?
 
-You also need to install `tinytex::install_tinytex()` for generating .pdfs from your book. 
+3.  To what extent do heat exposed and socioeconomically deprived neighbourhoods experience differentiated access to cooling-effective green spaces?
 
-Once installed you can build the book by clicking the Build Book icon under the build tab in the top right quadrant. 
-
-To export the book to word follow the code below from [Edd Berry](https://www.eddjberry.com/post/writing-your-thesis-with-bookdown/):
-
-```{r word, eval=FALSE}
-bookdown::preview_chapter("01-intro.Rmd",
-                output_format = "bookdown::word_document2",
-                output_file = paste0("thesis-intro-", 
-                                     format(Sys.Date(), 
-                                            ("%d-%m-%y")), 
-                                     ".docx"),
-                output_dir = "chapter-previews")
-```
-
-You can also setup a reference document if you wish that word will style it on. To do so:
-
-1. export to word using the code above.
-1. change the headings styles in word
-1. save the document
-1. add the `output_options()` function to the code above
-
-See [Custom Word Templates](https://bookdown.org/yihui/rmarkdown-cookbook/word-template.html) for more detailed instructions.
-
-```{r, eval=FALSE}
-bookdown::preview_chapter("01-intro.Rmd",
-                output_format = "bookdown::word_document2",
-                output_file = paste0("thesis-intro-", 
-                                     format(Sys.Date(), 
-                                            ("%d-%m-%y")), 
-                                     ".docx"),
-                output_dir = "chapter-previews",
-                output_options = list(reference_docx = "word-style-ref.docx"))
-```
-
-You can also export the whole document as word by clicking Build Book and selecting it. However, note that tables built with `Kabble` don't work with word, so you have the following options
-
-* create the html (gitbook) and copy the tables into word
-* either exclude them (`eval=FALSE`) in the code chunk header
-* use .pdf.
-
-## YAMLs
-
-You will see some files with a `.yml` extension. These stand for yet another markup language. 
-
-Open the `_output.yml` and `_bookdown.yml`. 
-
-The `_output.yml` controls the settings for each outputted format.
-
-The `_bookdown.yml` controls the order in which the files are made into chapters - you can also change the `Chapter` title if you wish here.
-
-I have set these up to create nice outputs, so there is really no need to change anything, unless you want to add a new chapter and include it in the list. To do so, simply create a new Rmarkdown document, delete all the default content, add a first level heading, and the then add it to where you want it to appear in the document in the `_bookdown.yml`.
-
-## Formatting 
-
-You'll notice in the `_output.yml` that the various formats (html (or gitbook) and pdf) are calling styling codes. The gitbook calls `style.css` and the `pdf_book` calls `preamble.tex`. These files just style the various outputs.
-
-I have copied in a basic styling with a CASA logo in the table of contents, you can replace this with other variations of the file if you wish or look at the [minimal bookdown example](https://github.com/rstudio/bookdown-demo) or my [CASA0005 .css file](https://github.com/andrewmaclachlan/CASA0005repo/blob/master/assets/style.css).
-
-The best place to learn more about styling is the [RStudio for education bookdown guide](https://rstudio4edu.github.io/rstudio4edu-book/intro-bookdown.html)
-
-For the .pdf version in the `preamble.tex` we have to use LaTex code. I am by no means an expert in this. If you Google each package it will tell you what it does. There isn't much here really, but all the header stuff refers to the headings at the top of each page.
-
-This tutorial from OurCoding Club explains some of the LaTex packages in a bit more detail: https://ourcodingclub.github.io/tutorials/rmarkdown-dissertation/
-
-## Index file
-
-Open up the `index.Rmd` this `Rmd` must be called first in the `_bookdown.yml` list. There are a number of options here, but i've set them all up to be compliant with the CASA thesis requirements. 
-
-You will need to change your title and name etc. Make sure you leave the a space here: `| Andrew MacLachlan` this won't work `|Andrew MacLachlan`
-
-If you were to be printing your work, you'd want to change the `classoption` to `twosides` and make sure the `geometry margins` were correct. `linestrech` refers to the line spacing and the bibliography stuff we come on to later.
-
-Input your GitHub repo and add a description. 
-
-If you ever wanted to just create a report and not a thesis you can change the `documentclass` to other options such `report`, `article` or `letter`
-
-## Preamble 
-
-Open the `preable.Rmd` and you will see all the sections that are required before the main text (e.g. Declaration and so on). At the top of the page i've used a code chunk set to LaTex, saying to use Roman numbering as we don't want page 1 to be the Declaration, we want it to be the first page of the Introduction. There are two conditions for each of the sections that state if output to HTML (gitbook) then do this, if output to LaTex then do this. This is the only place we have this. In our bookdown HTML we want to be able to click these sections, but in our LaTex .pdf we don't want them to appear in the table of contents. This is what this code is doing. 
-
-The Abstract is on the `index.Rmd` the same code condition applies to it, with Roman numbering also specified. 
-
-If you look back in the `_output.yml` you'll also see the `toc` (table of contents) is set to false. By default this appears right after the title, but we want this to come after our `preable.Rmd`. You'll see that i've called `\tableofcontents`, `\listoffigures` and `\listoftables` in the correct place again using a LaTex code chunk. These aren't required for the bookdown output. 
-
-The last section here is the abbreviations. To make this really easy, i've created an excel document to add them into. The code here will load that and then use the `kable` package to make a table. More on this later.I've also done the same for the research log in the appendix --- excel sheet called `research_log`.
-
-## Change this to a thesis
-
-Easy. Just change all the titles to what you want (e.g. Introduction, Literature Review, Methodology, Discussion, Conclusion). Some of the latter `.Rmds` (Discussion etc) are ready to go! 
-
-## Word count
-
-To get a word count install and then use the [word count addin package](https://github.com/benmarwick/wordcountaddin) through Tools>Addins>Wordcount 
-
-## Adding a pdf
-
-If you wish to add another .pdf as an Appendix (in your .pdf) then again we need a bit of LaTex code
-
-`\includepdf[pages={-}]{mypdf.pdf}`
-
-If you look in the `08-Appendix.Rmd` then you will see another if LaTex section, simply add in the line of code above, replacing `mypdf.pdf` with your pdf title in the main project folder. It will then be appended to the thesis. Of course, this isn't required in the online book, but you just link to them on GitHub or embed .pdfs using:
-
-```{r echo=FALSE, out.height = "600pt", out.width = "800pt", eval=FALSE}
-include_graphics('yourPDF.pdf', 
-                 auto_pdf = getOption("knitr.graphics.auto_pdf", 
-                                      FALSE)
-)
-```
-You'd need a condition around this like in the `preamble.Rmd` but a link is fine. I embedded a .pdf in [the assignment resources of CASA0005](https://andrewmaclachlan.github.io/CASA0005repo/assignment-resources-1.html)
-
-## Writing code
-
-Use one project for your thesis and another for your analysis. Don't try and do it all in a thesis project. You can set your output folder from your main analysis project to the thesis project and then easily load the figures in.
-
-## Package reproducibility 
-
-Have you ever created an R script, come back to it 6 months later and wonder why it's not working correctly? It's probably because of package updates.  
-
-`renv` (pronounced R - env) can capture the packages used in your project and re-create your current library. You simply:
-
-1. Create a new project - `renv::init()`
-1. Create a snapshot - `renv::snapshot()`
-1. Call the snapshot to load - `renv::restore()`
-
-The package information and dependencies are stored in a `renv.lock` file.
-
-When R loads a package it gets it from the library path, which is where the packages live. Sometimes there are two libraries a system and a user library - use `.libPaths()`. The system library = the packages with R, the user library = packages you have installed. 
-
-When you load a package it loads the first instance it comes across, user comes before system. To check - `find.package("tidyverse")`
-
-All your projects use these paths! If you load different packages and versions of them + dependencies. E.g.
-
-* Project 1 used `sf` version 0.9-8
-* Project 2 used `sf` version 0.9-6
-
-Switching between projects would mean you have the wrong version as they use the same libraries. 
-
-`renv` - each project gets it's own library! Project local libraries. 
-
-When you use `renv::init()` the library path will be changed to a project local one. 
-
-It will create a lock file that holds all the package information. 
-
-To re-create my environment once you have forked and pulled this repository you would use `renv::restore()`. 
-
-Of coruse some projects use the same package version --- such as `tidyverse`, `renv` has a global cache of all the libraries. So there is a massive database of your libraries then each project library links it from there, meaning you don't have 10 versions of the same `tidyverse`.
-
-You can also interact with `git`
-
-* `renv::history()` --- finds the commits where the lock file changed
-* `renv::revert(commit = "id")` --- changes the lock file back to what it was at a commit
-
-For more information watch renv: Project Environments for R introduction video: https://www.rstudio.com/resources/rstudioconf-2020/renv-project-environments-for-r/ 
+This study is structured as follows. The first section lays out the background of this research. Section 2 provides a brief overview of the literature and policy on urban heat, UGS and accessibility. Section 3 describes the data and research methodology. The results are then presented in Section 4 following a discussion in Section 5, which also highlights policy implications and future research directions. Finally, Section 6 summarises and concludes the study.

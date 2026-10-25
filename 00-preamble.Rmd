@@ -14,7 +14,7 @@ library(knitr)
 # Declaration {.unlisted .unnumbered}
 '`
 
-I hereby declare that this dissertation is all my own original work and that all sources have been acknowledged. It is xxx words in length
+I hereby declare that this dissertation is all my own original work and that all sources have been acknowledged. It is 11,998 words in length. Generative AI has been used to improve language and readability in writings and assistance in resolving coding and visualisation issues.
 
 `r if (knitr:::is_html_output()) '
 # Acknowledgements{-}
@@ -22,7 +22,8 @@ I hereby declare that this dissertation is all my own original work and that all
 `r if (knitr:::is_latex_output()) '
 # Acknowledgements {.unlisted .unnumbered}
 '`
-I would like to thank blah blah
+I would like to express my deepest gratitude to my supervisor Dr. Andrew MacLachlan for his invaluable advice, continued guidance and support throughout this process. I am also immensely grateful my family and friends for their encouragement and companionship along this journey. Finally, I would also like to acknowledge the open-source community for their generosity that have made data sources, R-packages and tutorials publicly available, which has inevitably played an important role in the completion of this study.
+Thank you all.
 
 
 ```{=latex}

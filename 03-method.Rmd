@@ -1,40 +1,224 @@
-# Equations and direct quotes
+# Methodology
 
-This section will focus on equations and direct quotes
+Previous section discussed the problem of urban heat and previous research findings on the topic. This section will outline the methodological approach for this study, following the study’s objectives to identify cooling-effective UGS and heat exposure across neighbourhoods (3.4), assess spatial distribution and multimodal accessibility of cooling-effective UGS as cooling opportunities (3.5), and examine accessibility equity across neighbourhoods in relation to patterns of heat exposure and socioeconomic deprivation (3.6).
 
-## Equations {#equations}
+## Statement of Ethics
 
-You need to include equations with some LaTeX. The easiest way to do this is to use an online tool such as: https://latex.codecogs.com/eqneditor/editor.php. It can be a real pain to get these right, but once you've worked it out it will be much easier than dealing with word equation editor. 
+All data sources are secondary and are publicly available and accessible. Neither primary data collection nor individuals will be involved or identifiable in the analysis or outputs. This study recognises ethnicity data derived from Census 2021 as sociopolitical constructs rather than biologically founded categories when classifying ethnic minority groups. Also acknowledging the ecological fallacy, where neighbourhood-level findings from aggregated data should not be assumed to represent the characteristics and experiences of individuals residing in the studied areas (Firebaugh, 2001). Therefore, results are presented carefully, with clear acknowledgement of methods, assumptions and limitations in the following sections. Accordingly, this study is considered minimal risk and exempt from ethical approval. All sources are cited transparently and in accordance with any specified access conditions. The analysis was carried out using Google Earth Engine (GEE) and R (version 4.5.2). The main R-packages used in this study are enclosed in Table E1. Regarding reproducibility, the code used to conduct this analysis is available in this GitHub repository, including all figures presented in this study.
 
-\begin{equation} 
-  p= h\frac{c}{\varrho}
-  (\#eq:test)
-\end{equation} 
+## Study Area
 
-To reference this in the text we use: \@ref(eq:test)
+This study focuses on Greater London, the capital of the United Kingdom (Figure 1). London has an expansive area of approximately 1,572 square kilometres, with a total population of 9,089,736 in 2024 (Office for National Statistics, n.d.a). It exhibits a spatially heterogeneous urban structure, with substantial variation in population density, demographics, employment, transportation connectivity, and socioeconomic diversity across both inner and outer London. Although around 20% of London is public green space, its provision is unevenly distributed, with access varying considerably across different neighbourhoods. This study therefore assesses UGS accessibility at Lower layer Super Output Areas (LSOA) level. LSOAs are small geographic statistical units, containing a residential population of approximately 1,000 to 3,000 each, with 4,994 LSOAs across London. UGS ≥ 2ha were included in this study as candidate sites, given their potential cooling capacity to serve as meaningful resources for communities (Almeida and Fonseca, 2025).
 
-You can also test your code in your RMarkdown document using `$` e.g. $$p= h\frac{c}{\varrho}$$
+```{r studyarea, echo=FALSE, out.width="100%", fig.cap="Study area of Greater London in the United Kingdom (a) with Census 2021 LSOA boundaries and featuring UGS ≥ 2ha as candidate sites for park cooling accessibility analysis (b)"}
+knitr::include_graphics(here::here("general_images", "Fig1_Study_Area.png"))
+```
 
-However, this won't generate an equation number and you can't cross reference it. But we can use this logic to define the parameters within the equation e.g. where $h$ is Plank's constant, $6.626 × 10^-34 Js$
+## Data and Research Workflow
 
-`$$` puts it on a new line, single `$` keeps it on the same line (in the text)
+This study follows a three-stage sequential analysis workflow where outputs from each stage inform the subsequent analysis as shown in Figure 2. Datasets used to produce this study were obtained from various open data platforms, including Earth observations, spatial, network and socio-economic and socio-demographic datasets (see Table 2).
 
-## Block quotes (or direct quotes) {#quotes}
+```{r methodologyworkflow, echo=FALSE, out.width="100%", fig.cap="Methodology workflow overview. The methodological approach is divided into 3 stages, 1) quantifying heat exposure and park cooling indicators to identify cooling-effective and publicly accessible UGS as well as transforming their corresponding UGS access points into routing destination points for Stage 2. 2) involves building a multimodal transport network and conducting r5r routing between origin and destination pairs to derive travel time matrices for computing accessibility indicators. 3) presents the statistical approaches used to assess accessibility (in)equity and identify local spatial clustering patterns in relation to heat exposure and socioeconomic deprivation. Together, the outcomes are to inform urban heat policy and equitable access to green infrastructure for London. "}
+knitr::include_graphics(here::here("general_images", "Fig2_Methodology_Workflow.jpg"))
+```
 
-You may wish to quote a large section from a source, to do this use a block quote. 
+```{r datasources, tidy=FALSE, echo=FALSE}
+data_sources <- readxl::read_excel(
+  "tables/data_sources.xlsx"
+)
 
-Simply input a `>` before the text. For example ` > This is a quote`. 
+knitr::kable(
+  data_sources,
+  caption = "Dataset, source, information extracted and the purpose of usage",
+  booktabs = TRUE
+)
+```
 
-> "This is a direct quote" 
+## Quantifying Urban Heat and Park Cooling
 
-You can also provide an attribution at the footer of the quote using `tufte::quote_footer()`, either a name or a reference. You'll need to install the `tufte` package to use this. For example, `> [include only r here] tufte::quote_footer('--- Joe Martin')` or ` > [include only r here] tufte::quote_footer('--- @xie2015')` 
+LST was used to quantify urban heat exposure and cooling-effectiveness of UGS, through surface urban heat island intensity (SUHII) and PCI (as defined in Section 3.4.2). Landsat-9 RS imageries was searched for the summer months from June 01 to August 31, 2025 (UK Met Office, 2025). Upon retrieval, quality screening with QA_PIXEL bitmask was used to eliminate pixels contaminated by dilated cloud, cirrus, cloud, or cloud shadow. A total of 8 scenes were radiometrically calibrated by applying a scaling factor and an additional offset to convert the Digital Number (DN) into surface temperature in Celsius ($T_{\text{Celsius}}$) following the formula below (Li and Wang, 2025). The image collection was then reduced with pixel-wise median to obtain a representative summer median composite LST imagery illustrated in Figure 3.
 
-Giving...
+\begin{equation}
+  T_{\text{Celsius}} = DN \times 0.00341802 + 149.0 - 273.15
+  (\#eq:lst-conversion)
+\end{equation}
 
-> `r tufte::quote_footer('--- Joe Martin')`
+```{r LST, echo=FALSE, out.width="100%", fig.cap="Spatial distribution of LST, a summer median composite across study area. A summer median composite of LST across the study area (Greater London), featuring 1,837 UGS for this study are based on valid UGS polygons that situate within or intersects on the Greater London Boundary and of size ≥ 2ha."}
+knitr::include_graphics(here::here("general_images", "Fig3_Spatial_Distribution_LST.png"))
+```
 
-> `r tufte::quote_footer('--- @xie2015')`
+### Surface Urban Heat Island Intensity
 
-Instead you could just include the reference at the end of the quote, using the same method to reference as we've seen before..e.g. `> "This is a direct quote" @xie2015, Equation \@ref(eq:test)`...giving 
+To establish an indicator of neighbourhood-level heat exposure, the mean LST of each LSOA (${\overline{LST}}_{i}$) was differenced from the mean LST across the whole study area of London (${\overline{LST}}_{\mathrm{other}}$), where both values represent the mean of all LST pixels within their respective boundaries. The resulting intra-urban SUHII indicates the relative thermal deviation of each neighbourhood from the London mean. The formula as follows (MacLachlan et al., 2017; Hoffman, Shandas and Pendleton, 2020):
 
-> "This is a direct quote" @xie2015 \@ref(eq:test)
+\begin{equation}
+  \mathrm{SUHII}_{i} = \overline{\mathrm{LST}}_{i} - \overline{\mathrm{LST}}_{\mathrm{other}}
+  (\#eq:suhii)
+\end{equation}
+
+### Park Cooling Effect
+
+Cooling effects were assessed for 1,837 UGS ≥ 2ha[^03-method-1], following the exclusion of 31 non-polygon features (i.e. LineString and Points). Given that cooling effect is non-linear with distance and varies by different functions and conditions, cooling-effectiveness of UGS was assessed from an accumulative perspective using PCI and park cooling gradient (PCG) to account for spatial continuity (Peng et al., 2021). Considering the 30m spatial resolution of Landsat imagery and previous evidence that cooling distance limits within 900m from the UGS boundary (Peng et al., 2021; Du et al., 2022), thirty 30m wide buffers zones were created offset from each UGS boundary to quantify the spatial extent and magnitude of park cooling effects (see Figure 4).
+
+[^03-method-1]: The methodological choice for selecting UGS ≥ 2ha was based on the Local Standard criteria in Accessible Greenspace Standard while recognising literature debates UGS smaller than 2ha may be too small to generate substantial cooling effects as discussed in literature review (Natural England, 2026a).
+
+```{r schematicdiagram, echo=FALSE, out.width="100%", fig.cap="Schematic diagram of cooling-effective UGS4F4F  and thirty 30m intervals mean LST buffer rings from the UGS boundary to the furthest buffer ring at 900m to evaluate the cooling effect of candidate UGS sites. llustrated using Adobe Illustrator featuring Regent’s Park, London; adapted from Zhang, Zhang and Qi (2024)"}
+knitr::include_graphics(here::here("general_images", "Fig4_Schematic_Diagram.png"))
+```
+
+The relationship between LST and distance (r) from the UGS boundary was modelled using a cubic polynomial function for deriving accurate fitting relationship at various distances as follows (Du et al., 2022):
+
+\begin{equation}
+  T(r) = ar^3 + br^2 + cr + d
+  (\#eq:cooling-curve)
+\end{equation}
+
+```{r conceptualpcicurve, echo=FALSE, out.width="100%", fig.cap="Conceptual park cooling curve showing the fitted LST-distance relationship from Peng et al. (2021, p. 3). The first turning point (first local maximum) within 30-900 meters from the UGS boundary was identified as maximum cooling distance (L), with the fitted temperature at this turning point as the surrounding LST ($T_{L}$) where cooling influence from UGS diminishes beyond this point."}
+knitr::include_graphics(here::here("general_images", "Fig5_Conceptual_Park_Cooling_Curve_Peng_et_al_2021.jpg"))
+```
+
+As identified by the fitted curve (illustrated in Figure 5), the maximum cooling distance ($L$) and its corresponding LST ($T_{L}$) will be used to calculate PCI and PCG. PCI is defined as the ratio of accumulated LST reduction within the maximum cooling distance, with higher PCI values demonstrating better cooling effect (Peng et al., 2021; Du et al., 2022; Xiong, Xie and Yang, 2024) PCG was calculated as the accumulated LST reduction by maximum cooling distance, with higher PCG values indicating stronger heat absorption capacities (Peng et al., 2021; Xiong, Xie and Yang, 2024). Both formulas are as follows:
+
+\begin{equation}
+  \mathrm{PCI} =
+  \frac{L \times T_L - \int_{0}^{L} T(r)\,dr}
+  {L \times T_L}
+  (\#eq:pci)
+\end{equation} \begin{equation}
+  \mathrm{PCG} =
+  \frac{L \times T_L - \int_{0}^{L} T(r)\,dr}
+  {L}
+  (\#eq:pcg)
+\end{equation}
+
+where,
+
+-   $L$ = Maximum cooling distance
+
+-   $T_{L}$ = LST at maximum cooling distance
+
+-   $L\times T_{L}$ = Cumulative fitted LST within distance L
+
+-   $\int_{0}^{L} T(r)\,dr$ = Cumulative sum of the LST at each distance from the UGS boundary
+
+-   $L \times T_L - \int_{0}^{L} T(r)\,dr$ = Cooling LST of the UGS.
+
+The following were considered for the identification of cooling-effective UGS, where UGS not meeting these criteria in reducing surrounding temperatures were excluded:
+
+1.  Valid cooling distance: maximum cooling distance ($L$) situated within 30-900 meters;
+
+2.  Maximum temperature reduction: the LST difference between LST at the maximum cooling distance ($T_{L}$) and the internal LST of UGS \>0;
+
+3.  PCI: accumulated LST reduction within ($L$) as a ratio \>0;
+
+4.  PCG: accumulated LST reduction divided by ($L$) \>0.
+
+Further considering for publicly accessible cooling-effective UGS, functions identified as Public Park or Garden and Playing Field are selected following the Accessible Greenspace Assessment (Natural England, 2026b). Other functions[^03-method-2] are not considered, as they are in many cases not publicly accessible, are not actual greenspaces or require paid access (Natural England, 2026b; Smith et al., 2026b). The identified cooling-effective UGS were then matched with their corresponding access points as routing destinations detailed in Section 3.5.
+
+[^03-method-2]: Other functions refers to cemetery, golf course, other sports facilities, tennis courts, religious grounds, allotments or community growing spaces following the Accessible Greenspace Assessment (Natural England, 2026b)
+
+## Multimodal Accessibility Modelling
+
+Multimodal accessibility is measured by whether cooling-effective UGS (Section 3.4) are reachable by walking, cycling or a combination of all public transport modes included in timetable datasets (i.e. bus, rail) as described in Table 1. Travel times were estimated using the r5r package (version 2.4.0) for R, a door-to-door routing approach[^03-method-3] of origin-destination pairs (Figure 6) computed through the R5 multimodal open-source routing engine (Pereira et al., 2021). Routing parameter choices for computing travel time matrices is adapted from the Journey Time Statistics (Department for Transport, 2019) and informed by wider bodies of accessibility research, summarised in Table 3.
+
+[^03-method-3]: Door-to-door routing approach considers the time needed across multiple travel stages of a journey, including initial waiting times at origin, any onboard and transfer times, and reaching the destination.
+
+```{r ODpoints, echo=FALSE, out.width="100%", fig.cap="Origin-destination points to estimate travel time by PT, walking and cycling. LSOA Population weighted centroids as routing origin (a), cooling-effective UGS greenspace access points as routing destination (b) Origins comprise of population weighted centroids across 4,994 London LSOAs, where access points of the corresponding 602 identified cooling effective UGS that are featured as Public Park Or Garden, and Playing Field are used as destinations."}
+knitr::include_graphics(here::here("general_images", "Fig6_Origin_Destinations.png"))
+```
+
+```{r routingparameters, tidy=FALSE, echo=FALSE}
+routing_parameters <- readxl::read_excel(
+  "tables/routing_parameters.xlsx"
+)
+
+knitr::kable(
+  routing_parameters,
+  caption = "Summary of routing parameters used for computing travel time matrices.",
+  booktabs = TRUE
+)
+```
+
+Taking the median travel time presented in Table A1, two accessibility indicators were developed across each LSOA and mode. Minimum travel time to the nearest cooling-effective UGS access point is obtained as a descriptive measure for identifying spatial variations in access to the nearest cooling opportunity. Additionally, a cumulative opportunity accessibility measure is employed to account for the number of opportunities (each cooling-effective UGS as one cooling opportunity) one can reach from a given origin location within predefined 15- and 60-minute thresholds. Here, a 15-minute threshold represents local accessibility, while the 60-minute threshold captures wider opportunities, acknowledging that accessibility may extend beyond local scales (as per Section 2.3). The formula is displayed and detailed as below (Pereira and Herszenhut, 2023). The corresponding variable outputs used for subsequent analysis are summarised in Table 4.
+
+\begin{equation}
+  A_{i} = \sum_{j=1}^{n} O_j f(c_{ij})
+  (\#eq:accessibility)
+\end{equation} \begin{equation}
+  f(c_{ij}) =
+  \begin{cases}
+    1, & c_{ij} \leq 15 \text{ or } 60 \text{ minutes} \\
+    0, & \text{otherwise}
+  \end{cases}
+  (\#eq:catchment-threshold)
+\end{equation}
+
+where,
+
+-   $A_{i}$ = Number of accessible cooling-effective UGS opportunities.
+
+-   $O_{j}$ = Cooling-effective UGS opportunities available at destination $j$.
+
+-   $n$ = Total number of destinations.
+
+-   $f(c_{ij})$ = Binary decay function applied to the travel-time cost $c_{ij}$, with thresholds of 15 or 60 minutes.
+
+```{r accessibilityindicators, tidy=FALSE, echo=FALSE}
+accessibility_indicators <- readxl::read_excel(
+  "tables/accessibility_indicators.xlsx"
+)
+
+knitr::kable(
+  accessibility_indicators,
+  caption = "Summary of accessibility indicators constructed from travel time records from Table A1 and the calculated cumulative opportunity accessibility scores. These indicators are used as modelling dependent variables for the analysis in Section 3.6.",
+  booktabs = TRUE
+)
+```
+
+## Statistical Analyses 
+The statistical analysis for this study follows three complementary approaches of regression modelling with Generalised Linear Models (GLM) and Bayesian Hierarchical Models (BHM)^[Bayesian Hierarchical Models (BHM) describe variability in an outcome (dependent) variable as a function of covariates and random effects that accounts for unexplained variation, allowing assessment of covariate effects and uncertainties in model estimates (Moraga, 2019).], and local spatial clustering analysis with Bivariate Local Indicators of Spatial Association (BiLISA) as illustrated in Figure 7. 
+
+```{r statisticalanalysisworkflow, echo=FALSE, out.width="100%", fig.cap="Statistical methodology workflow. Modelling variables will be examined using GLM models, with modelling likelihood (family) selected based on AIC values and further verification of spatial autocorrelation with Moran’s I on residuals. To enable spatial regression modelling using BYM2 models, a queen contiguity adjacency graph will be constructed, followed by fitting the modelling variables in BYM2 regression. BYM2 modelling likelihood (family) selection will be assessed using DIC, WAIC, CPO and MLIK values, followed by assessment of predictive calibration using adjusted PIT values and spatial autocorrelation using Moran’s I on residuals prior to model interpretation. Lastly, spatial clustering using BiLISA will be performed to identify significant local clusters, with L-H clusters extracted to examine spatial patterns and any overlap between clusters."}
+knitr::include_graphics(here::here("general_images", "Fig7_Statistical_Analyses_Workflow.jpg"))
+```
+
+To identify relationships between accessibility and EJ indicators, the modelling variables (see Table 5) are selected following the understanding of heat vulnerability as influenced by heat exposure, population sensitivity and socioeconomic conditions affecting adaptive capacity according to existing literature (as established in Section 2). No missing values were identified across modelling variables. An initial assessment of relationships between variables is accompanied by a Pairwise Spearman’s correlation matrix (see Figure 8) alongside calculation of variance inflation factors (VIF) values for each variable prior to model implementation. Accordingly, no variables were excluded due to minimal multicollinearity, and VIF values do not exceed 2.19. Continuous variables that were not normally distributed were transformed using natural logarithm. Further, continuous variables were standardised (z-score transformation) for interpretation ease and due to presence of interaction terms in the models (Johnson, 2022). 
+
+```{r modellingvariables, tidy=FALSE, echo=FALSE}
+modelling_variables <- readxl::read_excel(
+  "tables/modelling_variables.xlsx"
+)
+
+knitr::kable(
+  modelling_variables,
+  caption = "Summary of modelling variables, featuring 6 dependent variables and others as independent variables",
+  booktabs = TRUE
+)
+```
+
+```{r correlationmatrix, echo=FALSE, out.width="100%", fig.cap="Correlation matrix of numeric dependent, independent, and control modelling variables."}
+knitr::include_graphics(here::here("general_images", "Fig8_Spearman_Heatmap.png"))
+```
+
+Given the count nature of our dependent variables, OLS regression is not appropriate for this study. Instead, two types of count variable regressions of negative binomial and Poisson regression were considered. While both likelihoods allow zero values, negative binomial likelihoods can further handle overdispersed data (when variance exceeds mean). Given this, both were fitted with the same set of variables for each outcome. They are then compared with their corresponding Akaike Information Criterion (AIC) values, where models indicating better goodness-of-fit with lower AICs were selected as the distributional family for modelling (see Table B1) (Coxe, West and Aiken, 2009). Subsequently, global Moran’s I^[Moran’s I statistic quantifies spatial autocorrelation, with values ranging from -1 to 1, where negative values indicate spatial dispersion and positive values indicate spatial clustering.]  was used to check for spatial autocorrelation of GLM residuals to identify any spatial relationships of unobserved patterns (see Table B2). 
+
+Due to presence of strong positive spatial autocorrelation in Moran’s I results, next, BHM using Besag-York-Mollié (BYM2)^[Besag-York-Mollié (BYM2) is a reparametrized BYM model (sub-model of BHM) which takes into account small area-level random effects as a combination of spatially structured variation between neighbouring areas and spatially unstructured component (Riebler et al., 2016; Kandt et al., 2017).]  spatial specifications are implemented with integrated nested Laplace approximations (INLA)^[Integrated nested Laplace approximation (INLA) is an approximate Bayesian inference approach that estimates posterior distributions for latent Gaussian models, which provides more efficient computation for complex spatial models compared to traditional Markov chain Monte Carlo (MCMC) methods (Gause et al., 2024).] through the R-INLA^[The R-INLA package is described in Table E1] package to account for spatial dependence. Likewise, negative binomial and Poisson BYM2 models were fitted for each outcome, with likelihoods selected based on model comparison by reported Deviance Information Criteria (DIC), Widely Applicable Information Criterion (WAIC), Conditional Predictive Ordinate (CPO) and marginal likelihood (MLIK) values (Branion-Calles et al., 2026; Ngutuka et al., 2026) (see Table B3). Acknowledging that Bayesian models require prior model specifications (Veenman, Stefan and Haaf, 2024), INLA default priors were used for modelling given it’s well-established and widely implemented by existing studies (Gómez-Rubio, 2020; Yankey et al., 2024). The regression is formulated for each of the 6 dependent variables of the accessibility in a specific LSOA (i) across PT, walking and cycling travel modes with specified time thresholds. Model equation is as follows, with b_{i} denotes spatially structured and unstructured effects based on an adjacency graph constructed by Queen contiguity: 
+
+\begin{equation}
+\begin{aligned}
+\log(\mu_i) =\;& \beta_0
++ \beta_1 \mathrm{IMD}_i
++ \beta_2 \mathrm{SUHII}_i
++ \beta_3 (\mathrm{IMD}_i \times \mathrm{SUHII}_i) \\
+&+ \beta_4 \mathrm{Age}_{0\text{--}4,i}
++ \beta_5 \mathrm{Age}_{65+,i}
++ \beta_6 \mathrm{EthnicMinority}_i \\
+&+ \beta_7 \mathrm{PopulationDensity}_i
++ \beta_8 \mathrm{InnerOuterLondon}_i
++ b_i
+\end{aligned}
+(\#eq:bym2-model)
+\end{equation}
+
+As the linear predictor is defined on the logarithm scale, model results are interpreted by exponentiating the posterior mean coefficient $(e^{\beta })$ to obtain the incidence rate ratio (IRR), with the exponentiated 2.5th and 97.5th percentiles reported as 95% posterior credible intervals (CI) (Astell-Burt et al., 2014; Branion-Calles et al., 2026). Here, IRR of 1 indicates no associations, where above 1 indicates positive and below 1 indicates negative associations per one unit change in the standard deviation for standardised continuous variables (Astell-Burt et al., 2014). Following, BYM2 model residuals’ spatial variation was examined by Moran’s I for any remaining spatial autocorrelation. 
+To further identify local spatial associations in accessibility equity, BiLISA was performed using the spdep package for cross-variable examination between accessibility indicators (observed variables) and the key equity indicators of heat exposure and socioeconomic deprivation (spatially lagged variables) across neighbourhoods. Resulting statistics classified as High-High, High-Low, Low-Low, Low-High (L-H) or not significant (Ermagun, Janatabadi and Maharjan, 2023) will be interpreted according to the definition of equity established in Section 2.4. L-H clustering will be interpreted as areas with patterns of inequity and relatively equitable conditions indicating High-Low. Together, these findings will be presented in Section 4 and discussed through the lens of distributive EJ to identify priority intervention locations in Section 5.

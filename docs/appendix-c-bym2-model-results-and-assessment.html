@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Appendix C BYM2 Model Results and Assessment | Assessing Spatial Equity in Multimodal Accessibility to Cooling-Effective Urban Green Space: A Case Study of London</title>
+  <meta name="description" content="This dissertation is submitted in part requirement for the MSc in the Centre for Advanced Spatial Analysis, Bartlett Faculty of the Built Environment, UCL" />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Appendix C BYM2 Model Results and Assessment | Assessing Spatial Equity in Multimodal Accessibility to Cooling-Effective Urban Green Space: A Case Study of London" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This dissertation is submitted in part requirement for the MSc in the Centre for Advanced Spatial Analysis, Bartlett Faculty of the Built Environment, UCL" />
+  <meta name="github-repo" content="christychoicc/london-cooling-access-equity-thesis" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Appendix C BYM2 Model Results and Assessment | Assessing Spatial Equity in Multimodal Accessibility to Cooling-Effective Urban Green Space: A Case Study of London" />
+  
+  <meta name="twitter:description" content="This dissertation is submitted in part requirement for the MSc in the Centre for Advanced Spatial Analysis, Bartlett Faculty of the Built Environment, UCL" />
+  
+
+
+
+<meta name="date" content="2026-10-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="appendix-b-regression-model-specification-and-selection.html"/>
+<link rel="next" href="appendix-d-bilisa-spatial-clustering.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+<link rel="icon" type="image/x-icon" href="general_images/favicon.ico">
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="toc-logo"><a href="https://www.ucl.ac.uk/bartlett/casa/"><img src="general_images/casa_logo.jpg"></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="" data-path="declaration.html"><a href="declaration.html"><i class="fa fa-check"></i>Declaration</a></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="abbreviations.html"><a href="abbreviations.html"><i class="fa fa-check"></i>Abbreviations</a></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="literaturereview.html"><a href="literaturereview.html"><i class="fa fa-check"></i><b>2</b> Literature Review</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="literaturereview.html"><a href="literaturereview.html#urban-heat-problem"><i class="fa fa-check"></i><b>2.1</b> Urban Heat Problem</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="literaturereview.html"><a href="literaturereview.html#vulnerability-of-cities-to-urban-heat"><i class="fa fa-check"></i><b>2.1.1</b> Vulnerability of Cities to Urban Heat</a></li>
+<li class="chapter" data-level="2.1.2" data-path="literaturereview.html"><a href="literaturereview.html#global-and-local-policies"><i class="fa fa-check"></i><b>2.1.2</b> Global and Local Policies</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="literaturereview.html"><a href="literaturereview.html#cooling-benefits-of-urban-green-space"><i class="fa fa-check"></i><b>2.2</b> Cooling Benefits of Urban Green Space</a></li>
+<li class="chapter" data-level="2.3" data-path="literaturereview.html"><a href="literaturereview.html#equitable-access-to-cooling-infrastructure"><i class="fa fa-check"></i><b>2.3</b> Equitable Access to Cooling Infrastructure</a></li>
+<li class="chapter" data-level="2.4" data-path="literaturereview.html"><a href="literaturereview.html#measuring-cooling-accessibility-and-spatial-equity"><i class="fa fa-check"></i><b>2.4</b> Measuring Cooling Accessibility and Spatial Equity</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="methodology.html"><a href="methodology.html"><i class="fa fa-check"></i><b>3</b> Methodology</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="methodology.html"><a href="methodology.html#statement-of-ethics"><i class="fa fa-check"></i><b>3.1</b> Statement of Ethics</a></li>
+<li class="chapter" data-level="3.2" data-path="methodology.html"><a href="methodology.html#study-area"><i class="fa fa-check"></i><b>3.2</b> Study Area</a></li>
+<li class="chapter" data-level="3.3" data-path="methodology.html"><a href="methodology.html#data-and-research-workflow"><i class="fa fa-check"></i><b>3.3</b> Data and Research Workflow</a></li>
+<li class="chapter" data-level="3.4" data-path="methodology.html"><a href="methodology.html#quantifying-urban-heat-and-park-cooling"><i class="fa fa-check"></i><b>3.4</b> Quantifying Urban Heat and Park Cooling</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="methodology.html"><a href="methodology.html#surface-urban-heat-island-intensity"><i class="fa fa-check"></i><b>3.4.1</b> Surface Urban Heat Island Intensity</a></li>
+<li class="chapter" data-level="3.4.2" data-path="methodology.html"><a href="methodology.html#park-cooling-effect"><i class="fa fa-check"></i><b>3.4.2</b> Park Cooling Effect</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="methodology.html"><a href="methodology.html#multimodal-accessibility-modelling"><i class="fa fa-check"></i><b>3.5</b> Multimodal Accessibility Modelling</a></li>
+<li class="chapter" data-level="3.6" data-path="methodology.html"><a href="methodology.html#statistical-analyses"><i class="fa fa-check"></i><b>3.6</b> Statistical Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>4</b> Results</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="results.html"><a href="results.html#heat-exposure-and-cooling-effective-urban-green-spaces"><i class="fa fa-check"></i><b>4.1</b> Heat Exposure and Cooling-Effective Urban Green Spaces</a></li>
+<li class="chapter" data-level="4.2" data-path="results.html"><a href="results.html#multimodal-accessibility-to-cooling-effective-urban-green-space"><i class="fa fa-check"></i><b>4.2</b> Multimodal Accessibility to Cooling-Effective Urban Green Space</a></li>
+<li class="chapter" data-level="4.3" data-path="results.html"><a href="results.html#spatial-association-and-clustering"><i class="fa fa-check"></i><b>4.3</b> Spatial Association and Clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>5</b> Discussion</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="discussion.html"><a href="discussion.html#availability-of-cooling-effective-urban-green-space-and-accessibility"><i class="fa fa-check"></i><b>5.1</b> Availability of Cooling-Effective Urban Green Space and Accessibility</a></li>
+<li class="chapter" data-level="5.2" data-path="discussion.html"><a href="discussion.html#spatial-equity-in-cooling-effective-urban-green-space-accessibility"><i class="fa fa-check"></i><b>5.2</b> Spatial Equity in Cooling-Effective Urban Green Space Accessibility</a></li>
+<li class="chapter" data-level="5.3" data-path="discussion.html"><a href="discussion.html#implications-for-urban-heat-policy"><i class="fa fa-check"></i><b>5.3</b> Implications for Urban Heat Policy</a></li>
+<li class="chapter" data-level="5.4" data-path="discussion.html"><a href="discussion.html#transferability"><i class="fa fa-check"></i><b>5.4</b> Transferability</a></li>
+<li class="chapter" data-level="5.5" data-path="discussion.html"><a href="discussion.html#limitations"><i class="fa fa-check"></i><b>5.5</b> Limitations</a></li>
+<li class="chapter" data-level="5.6" data-path="discussion.html"><a href="discussion.html#future-direction"><i class="fa fa-check"></i><b>5.6</b> Future Direction</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>6</b> Conclusion</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="appendix-a-routing-travel-time-matrix-outputs.html"><a href="appendix-a-routing-travel-time-matrix-outputs.html"><i class="fa fa-check"></i>Appendix A Routing Travel Time Matrix Outputs</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-regression-model-specification-and-selection.html"><a href="appendix-b-regression-model-specification-and-selection.html"><i class="fa fa-check"></i>Appendix B Regression Model Specification and Selection</a></li>
+<li class="chapter" data-level="" data-path="appendix-c-bym2-model-results-and-assessment.html"><a href="appendix-c-bym2-model-results-and-assessment.html"><i class="fa fa-check"></i>Appendix C BYM2 Model Results and Assessment</a></li>
+<li class="chapter" data-level="" data-path="appendix-d-bilisa-spatial-clustering.html"><a href="appendix-d-bilisa-spatial-clustering.html"><i class="fa fa-check"></i>Appendix D BiLISA Spatial Clustering</a></li>
+<li class="chapter" data-level="" data-path="appendix-e-main-r-packages-used-in-this-study.html"><a href="appendix-e-main-r-packages-used-in-this-study.html"><i class="fa fa-check"></i>Appendix E Main R-packages used in this study</a></li>
+<li class="chapter" data-level="" data-path="appendix-f-research-log.html"><a href="appendix-f-research-log.html"><i class="fa fa-check"></i>Appendix F Research log</a></li>
+<li class="divider"></li>
+<li><a href="" target="blank"></a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Assessing Spatial Equity in Multimodal Accessibility to Cooling-Effective Urban Green Space: A Case Study of London</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="appendix-c-bym2-model-results-and-assessment" class="section level1 unnumbered hasAnchor">
+<h1>Appendix C BYM2 Model Results and Assessment<a href="appendix-c-bym2-model-results-and-assessment.html#appendix-c-bym2-model-results-and-assessment" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="bym2-regression-model-results" class="section level2 unlisted unnumbered hasAnchor">
+<h2>BYM2 Regression Model Results<a href="appendix-c-bym2-model-results-and-assessment.html#bym2-regression-model-results" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table style="width:100%;">
+<caption><span id="tab:bym2results">Table 6.5: </span>BYM2 Fixed Effects Mean Incidence Rate Ratios and 95% Credible Intervals (CI) for Poisson BYM2 models. The models are as follows: 15-minute Accessibility by PT (Model 1); 60-minute Accessibility by PT (Model 2); 15-minute Accessibility by Walking (Model 3); 60-minute Accessibility by Walking (Model 4); 15-minute Accessibility by Cycling (Model 5); 60-minute Accessibility by Cycling (Model 6). Bolded values indicate where 95% CI excludes the null value of 1, suggesting credible evidence associations. This can be interpreted in the following way, for example, for SUHII in Model 1, IRR of 1.084 (95%CI: 1.042-1.128) suggests one standard deviation increase in SUHII to be associated with an 8.4% higher cooling-effective UGS accessibility within 15 minutes by PT, with other variables held constant.</caption>
+<colgroup>
+<col width="14%" />
+<col width="13%" />
+<col width="15%" />
+<col width="13%" />
+<col width="15%" />
+<col width="13%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Variable</th>
+<th align="left">Model 1</th>
+<th align="left">Model 2</th>
+<th align="left">Model 3</th>
+<th align="left">Model 4</th>
+<th align="left">Model 5</th>
+<th align="left">Model 6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Intercept</td>
+<td align="left">1.087 (1.010, 1.170)</td>
+<td align="left">96.184 (94.492, 97.906)</td>
+<td align="left">1.716 (1.618, 1.821)</td>
+<td align="left">23.252 (22.878, 23.631)</td>
+<td align="left">3.615 (3.466, 3.770)</td>
+<td align="left">54.238 (53.567, 54.918)</td>
+</tr>
+<tr class="even">
+<td align="left">IMD (z)</td>
+<td align="left">1.040 (0.996, 1.087)</td>
+<td align="left">1.006 (0.997, 1.015)</td>
+<td align="left">1.022 (0.986, 1.058)</td>
+<td align="left">0.988 (0.979, 0.998)</td>
+<td align="left">1.023 (0.998, 1.049)</td>
+<td align="left">0.993 (0.986, 1.000)</td>
+</tr>
+<tr class="odd">
+<td align="left">SUHII (z)</td>
+<td align="left">1.084 (1.042, 1.128)</td>
+<td align="left">1.018 (1.009, 1.027)</td>
+<td align="left">1.076 (1.042, 1.111)</td>
+<td align="left">1.016 (1.007, 1.025)</td>
+<td align="left">1.041 (1.017, 1.064)</td>
+<td align="left">1.010 (1.003, 1.017)</td>
+</tr>
+<tr class="even">
+<td align="left">IMD × SUHII</td>
+<td align="left">0.959 (0.929, 0.989)</td>
+<td align="left">0.996 (0.990, 1.002)</td>
+<td align="left">0.960 (0.937, 0.985)</td>
+<td align="left">0.995 (0.988, 1.002)</td>
+<td align="left">0.973 (0.956, 0.990)</td>
+<td align="left">0.993 (0.988, 0.998)</td>
+</tr>
+<tr class="odd">
+<td align="left">Log pop. density (z)</td>
+<td align="left">1.005 (0.963, 1.049)</td>
+<td align="left">1.009 (1.001, 1.017)</td>
+<td align="left">1.029 (0.994, 1.065)</td>
+<td align="left">1.014 (1.004, 1.023)</td>
+<td align="left">1.032 (1.007, 1.057)</td>
+<td align="left">1.012 (1.006, 1.019)</td>
+</tr>
+<tr class="even">
+<td align="left">Age 4 or under % (z)</td>
+<td align="left">1.006 (0.970, 1.043)</td>
+<td align="left">0.991 (0.984, 0.998)</td>
+<td align="left">1.023 (0.993, 1.054)</td>
+<td align="left">1.004 (0.996, 1.013)</td>
+<td align="left">1.003 (0.983, 1.024)</td>
+<td align="left">1.001 (0.995, 1.006)</td>
+</tr>
+<tr class="odd">
+<td align="left">Age 65 or over % (z)</td>
+<td align="left">0.987 (0.940, 1.036)</td>
+<td align="left">0.965 (0.956, 0.974)</td>
+<td align="left">1.003 (0.965, 1.043)</td>
+<td align="left">1.001 (0.990, 1.012)</td>
+<td align="left">0.984 (0.958, 1.012)</td>
+<td align="left">0.999 (0.991, 1.006)</td>
+</tr>
+<tr class="even">
+<td align="left">Ethnic minority % (z)</td>
+<td align="left">1.003 (0.941, 1.069)</td>
+<td align="left">1.049 (1.034, 1.064)</td>
+<td align="left">0.971 (0.922, 1.023)</td>
+<td align="left">1.032 (1.017, 1.047)</td>
+<td align="left">0.980 (0.945, 1.017)</td>
+<td align="left">1.030 (1.019, 1.042)</td>
+</tr>
+<tr class="odd">
+<td align="left">Inner, Outer London</td>
+<td align="left">0.908 (0.768, 1.074)</td>
+<td align="left">1.003 (0.960, 1.048)</td>
+<td align="left">0.940 (0.820, 1.078)</td>
+<td align="left">0.970 (0.935, 1.008)</td>
+<td align="left">1.072 (0.972, 1.182)</td>
+<td align="left">1.036 (1.006, 1.067)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="assessment-of-model-fit-and-predictive-calibration" class="section level2 unlisted unnumbered hasAnchor">
+<h2>Assessment of Model Fit and Predictive Calibration<a href="appendix-c-bym2-model-results-and-assessment.html#assessment-of-model-fit-and-predictive-calibration" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Adjusted PIT histogram plots to visualise calibration diagnostics for predictive distribution of models (Leeuwenburg et al., 2026), with the adjusted PIT used for plotting calculated as follows (Gómez-Rubio, 2020):</p>
+<p><span class="math display" id="eq:adjusted-pit">\[\begin{equation}
+PIT_i^{\mathrm{adjusted}} = PIT_i - 0.5 \times CPO_i
+\tag{6.1}
+\end{equation}\]</span></p>
+<div class="figure"><span style="display:block;" id="fig:adjustedpitdistribution"></span>
+<img src="general_images/FigC1_Adjusted_PIT_Histograms.png" alt="Adjusted PIT distribution histograms across BYM2 models. Histograms are used to assess calibration of predictive distributions, where uniform distribution indicates for ideal calibration, U-shaped and inverted U-shaped indicates under-dispersion and over-dispersion respectively (Leeuwenburg et al., 2026)." width="100%" />
+<p class="caption">
+Figure 6.1: Adjusted PIT distribution histograms across BYM2 models. Histograms are used to assess calibration of predictive distributions, where uniform distribution indicates for ideal calibration, U-shaped and inverted U-shaped indicates under-dispersion and over-dispersion respectively (Leeuwenburg et al., 2026).
+</p>
+</div>
+</div>
+<div id="assessment-of-residual-spatial-autocorrelation-in-bym2-models" class="section level2 unlisted unnumbered hasAnchor">
+<h2>Assessment of Residual Spatial Autocorrelation in BYM2 Models<a href="appendix-c-bym2-model-results-and-assessment.html#assessment-of-residual-spatial-autocorrelation-in-bym2-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<caption><span id="tab:bym2residuals">Table 6.6: </span>Global Moran’s I statistics for BYM2 residuals spatial autocorrelation. Moran’s I is calculated using queens’ contiguity and four nearest-neighbours (KNN = 4) spatial weights matrix. Values of 0 indicates for no spatial autocorrelation, while values ranging from 1 to -1 indicates for strong clustering and strong dispersion respectively. This table assesses the extent of spatial dependence remaining after the inclusion of spatial effects by BYM2 spatial models. In comparison to Table B2, BYM2 model residuals spatial autocorrelation was reduced substantially, although positive spatial autocorrelation remains in most models.</caption>
+<colgroup>
+<col width="15%" />
+<col width="26%" />
+<col width="25%" />
+<col width="17%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Model</th>
+<th align="right">Queens continguity - Moran’s I</th>
+<th align="left">Queens continguity - p-value</th>
+<th align="right">KNN = 4 - Moran’s I</th>
+<th align="left">KNN = 4 - p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">15-minute PT</td>
+<td align="right">0.252</td>
+<td align="left">p&lt;0.001</td>
+<td align="right">0.284</td>
+<td align="left">p&lt;0.001</td>
+</tr>
+<tr class="even">
+<td align="left">60-minute PT</td>
+<td align="right">-0.012</td>
+<td align="left">p = 0.927</td>
+<td align="right">0.054</td>
+<td align="left">p&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td align="left">15-minute Walking</td>
+<td align="right">0.374</td>
+<td align="left">p&lt;0.001</td>
+<td align="right">0.411</td>
+<td align="left">p&lt;0.001</td>
+</tr>
+<tr class="even">
+<td align="left">60-minute Walking</td>
+<td align="right">0.485</td>
+<td align="left">p&lt;0.001</td>
+<td align="right">0.498</td>
+<td align="left">p&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td align="left">15-minute Cycling</td>
+<td align="right">0.330</td>
+<td align="left">p&lt;0.001</td>
+<td align="right">0.366</td>
+<td align="left">p&lt;0.001</td>
+</tr>
+<tr class="even">
+<td align="left">60-minute Cycling</td>
+<td align="right">0.343</td>
+<td align="left">p&lt;0.001</td>
+<td align="right">0.358</td>
+<td align="left">p&lt;0.001</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="appendix-b-regression-model-specification-and-selection.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="appendix-d-bilisa-spatial-clustering.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": false,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": false
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/christychoicc/london-cooling-access-equity-thesis/edit/main/10-appendix.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["CASA-Thesis.pdf", "https://github.com/christychoicc/london-cooling-access-equity-thesis/raw/main/10-appendix.Rmd"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

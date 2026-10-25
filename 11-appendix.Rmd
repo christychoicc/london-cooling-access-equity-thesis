@@ -1,0 +1,25 @@
+# Appendix D  BiLISA Spatial Clustering {-}
+
+```{=latex}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+```
+
+```{r bilisaresults, tidy=FALSE, echo=FALSE}
+bilisa_results <- readxl::read_excel(
+  "tables/bilisa_results.xlsx"
+)
+
+knitr::kable(
+  bilisa_results,
+  caption = " Summary distribution of BiLISA clusters of 15 or 60-minute accessibility by SUHII or IMD across London LSOAs. The following table shows the number of LSOAs (count) in each cluster category and percentage of LSOAs in brackets. Low-High clusters were identified as areas of low accessibility with high heat exposure and/or socioeconomic deprivation, which is interpreted as potential spatial inequity “hotspots”. These BiLISA outcomes for each variable combination are further illustrated in Figure D1 and D2.",
+  booktabs = TRUE
+)
+```
+
+```{r appendixbilisa15min, echo=FALSE, out.width="100%", fig.cap="Spatial distribution of 15-minute BiLISA Low accessibility - High SUHII or IMD clusters as follows: (a) Low PT accessibility and High SUHII, (b) Low PT accessibility and High IMD, (c) Low walking accessibility and High SUHII, (d) Low walking accessibility and High IMD, (e) Low cycling accessibility and High SUHII, (f) Low cycling accessibility and High SUHII."}
+knitr::include_graphics(here::here("general_images", "FigD1_BiLISA_15_min_LH.png"))
+```
+
+```{r appendixbilisa60min, echo=FALSE, out.width="100%", fig.cap="Spatial distribution of 60-minute BiLISA Low accessibility - High SUHII or IMD clusters as follows: (a) Low PT accessibility and High SUHII, (b) Low PT accessibility and High IMD, (c) Low walking accessibility and High SUHII, (d) Low walking accessibility and High IMD, (e) Low cycling accessibility and High SUHII, (f) Low cycling accessibility and High SUHII."}
+knitr::include_graphics(here::here("general_images", "FigD2_BiLISA_60_min_LH.png"))
+```

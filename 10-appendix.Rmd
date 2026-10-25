@@ -1,0 +1,44 @@
+# Appendix C  BYM2 Model Results and Assessment {-}
+
+```{=latex}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+```
+
+## BYM2 Regression Model Results {.unlisted .unnumbered}
+
+```{r bym2results, tidy=FALSE, echo=FALSE}
+bym2_results <- readxl::read_excel(
+  "tables/bym2_results.xlsx"
+)
+
+knitr::kable(
+  bym2_results,
+  caption = "BYM2 Fixed Effects Mean Incidence Rate Ratios and 95% Credible Intervals (CI) for Poisson BYM2 models. The models are as follows: 15-minute Accessibility by PT (Model 1); 60-minute Accessibility by PT (Model 2); 15-minute Accessibility by Walking (Model 3); 60-minute Accessibility by Walking (Model 4); 15-minute Accessibility by Cycling (Model 5); 60-minute Accessibility by Cycling (Model 6). Bolded values indicate where 95% CI excludes the null value of 1, suggesting credible evidence associations. This can be interpreted in the following way, for example, for SUHII in Model 1, IRR of 1.084 (95%CI: 1.042-1.128) suggests one standard deviation increase in SUHII to be associated with an 8.4% higher cooling-effective UGS accessibility within 15 minutes by PT, with other variables held constant.",
+  booktabs = TRUE
+)
+```
+
+## Assessment of Model Fit and Predictive Calibration {.unlisted .unnumbered}
+Adjusted PIT histogram plots to visualise calibration diagnostics for predictive distribution of models (Leeuwenburg et al., 2026), with the adjusted PIT used for plotting calculated as follows (Gómez-Rubio, 2020): 
+
+\begin{equation}
+PIT_i^{\mathrm{adjusted}} = PIT_i - 0.5 \times CPO_i
+(\#eq:adjusted-pit)
+\end{equation}
+
+```{r adjustedpitdistribution, echo=FALSE, out.width="100%", fig.cap="Adjusted PIT distribution histograms across BYM2 models. Histograms are used to assess calibration of predictive distributions, where uniform distribution indicates for ideal calibration, U-shaped and inverted U-shaped indicates under-dispersion and over-dispersion respectively (Leeuwenburg et al., 2026)."}
+knitr::include_graphics(here::here("general_images", "FigC1_Adjusted_PIT_Histograms.png"))
+```
+
+## Assessment of Residual Spatial Autocorrelation in BYM2 Models {.unlisted .unnumbered}
+```{r bym2residuals, tidy=FALSE, echo=FALSE}
+bym2_residuals <- readxl::read_excel(
+  "tables/bym2_residuals.xlsx"
+)
+
+knitr::kable(
+  bym2_residuals,
+  caption = "Global Moran’s I statistics for BYM2 residuals spatial autocorrelation. Moran’s I is calculated using queens’ contiguity and four nearest-neighbours (KNN = 4) spatial weights matrix. Values of 0 indicates for no spatial autocorrelation, while values ranging from 1 to -1 indicates for strong clustering and strong dispersion respectively. This table assesses the extent of spatial dependence remaining after the inclusion of spatial effects by BYM2 spatial models. In comparison to Table B2, BYM2 model residuals spatial autocorrelation was reduced substantially, although positive spatial autocorrelation remains in most models.",
+  booktabs = TRUE
+)
+```

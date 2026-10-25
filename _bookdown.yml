@@ -11,6 +11,11 @@ rmd_files:
 - 06-conclusion.Rmd
 - 07-references.Rmd
 - 08-appendix.Rmd
+- 09-appendix.Rmd
+- 10-appendix.Rmd
+- 11-appendix.Rmd
+- 12-appendix.Rmd
+- 13-appendix.Rmd
 language:
   ui:
     chapter_name: "Chapter "

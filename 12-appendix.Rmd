@@ -1,0 +1,17 @@
+# Appendix E  Main R-packages used in this study {-}
+
+```{=latex}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+```
+
+```{r rpackages, tidy=FALSE, echo=FALSE}
+r_packages <- readxl::read_excel(
+  "tables/r_packages.xlsx"
+)
+
+knitr::kable(
+  r_packages,
+  caption = "Summary of main R-packages used for the analysis of this study. R-packages with (*) are installed remotely, while others are installed from CRAN in R.",
+  booktabs = TRUE
+)
+```

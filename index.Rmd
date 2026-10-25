@@ -1,21 +1,21 @@
 --- 
-title: CASA dissertation using Bookdown
+title: "Assessing Spatial Equity in Multimodal Accessibility to Cooling-Effective Urban Green Space: A Case Study of London"
 
 author: 
 - |
-    | Andrew MacLachlan
+    | Chi Chin Christy Choi
     |    
-    | CASA0010, MSc Smart Cities Dissertation 
+    | CASA0010, MSc Urban Spatial Science 
     |  
     | Supervisor: Dr Andrew MacLachlan
     |
-    | Repository: https://andrewmaclachlan.github.io/CASA0005repo/
+    | Repository: https://github.com/christychoicc/london-cooling-access-equity.git
     |  
     | This dissertation is submitted in part requirement for the 
-    | MSc (Or MRes) in the Centre for Advanced Spatial Analysis, 
+    | MSc in the Centre for Advanced Spatial Analysis, 
     | Bartlett Faculty of the Built Environment, UCL
     |
-    | Word count:  
+    | Word count: 11,998 
 
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -28,8 +28,8 @@ linestretch: 1.5
 bibliography: [book.bib, packages.bib, test.bib]
 biblio-style: apa
 link-citations: yes
-github-repo: andrewmaclachlan/CASA-MSc-thesis
-description: "This dissertation is submitted in part requirement for the MSc (Or MRes) in the Centre for Advanced Spatial Analysis, Bartlett Faculty of the Built Environment, UCL "
+github-repo: christychoicc/london-cooling-access-equity-thesis
+description: "This dissertation is submitted in part requirement for the MSc in the Centre for Advanced Spatial Analysis, Bartlett Faculty of the Built Environment, UCL "
 always_allow_html: yes
 ---
 
@@ -47,5 +47,11 @@ library(knitr)
 `r if (knitr:::is_latex_output()) '
 # Abstract {.unlisted .unnumbered}
 '`
-Some abstract text
+Climate change and rapid urbanisation have contributed to the increasing frequency and intensity of extreme heat events, placing significant pressures on urban populations and raising environmental justice concerns. While urban green spaces (UGS) are important infrastructure for heat mitigation, current efforts remain limited in integrating UGS cooling performance with accessibility and environmental equity. To address this gap, we assess the extent to which multimodal accessibility to cooling-effective UGS is equitably distributed across heat exposed and socioeconomically deprived neighbourhoods in the case of London.
+
+Land surface temperature (LST) was used to screen UGS with cooling effects through a cumulative approach of park cooling indicators. Using the r5r package for R, travel time between each origin and potential destination was used to quantify cumulative opportunity accessibility to cooling-effective UGS by public transit, walking, and cycling reachable within 15- and 60-minute thresholds. Spatial relationships between accessibility, heat exposure and socioeconomic deprivation were assessed by Bayesian Hierarchical Besag-York-Mollié (BYM2) models implemented in the R-INLA package, complemented by Bivariate Local Indicator of Spatial Association (BiLISA).
+
+Applying this methodological approach to London, the findings reveal that only 32.77% of UGS ≥ 2ha were both cooling-effective and publicly accessible, with access to these spaces varying substantially by travel mode and time thresholds. Although higher heat exposure was generally associated with greater accessibility, such relationship weakens with increasing socioeconomic deprivation. Despite the overall pattern, inequity hotspots remained persistent at the local scale. Altogether, this study demonstrates an integrated data-driven approach for assessing spatial inequalities in cooling-effective UGS potential accessibility, enabling identification of local green spaces accessibility deficiencies and inform targeted green infrastructure and urban heat resilience planning strategies to address specific inequalities.
+
+Keywords: Urban heat; urban green space; accessibility; spatial inequality; environmental justice
 
